@@ -1,0 +1,42 @@
+.chat-window{
+  height:500px;
+
+  background-color: beige;
+  padding:20px;
+  position:relative;
+
+}
+.chat-container{
+  height:400px;
+  background-color:#fff;
+  overflow-y:auto;
+
+}
+.text-message{
+  list-style: none;
+  padding:10px 0 10px 50px;
+  position:relative;
+}
+.name-message{
+  display:block;
+  vertical-align: middle;
+  color: #676ec4;
+}
+.text-input{
+ margin:20px;
+  width:90%;
+  display:inline-block;
+
+}
+.name{
+  margin-left:20px;
+}
+.button{
+  display:inline-block;
+}
+.date{
+  position:absolute;
+  vertical-align: middle;
+  right:1px;
+  color: #48c46c;
+}

@@ -1,0 +1,14 @@
+<% list.forEach(function(item){ %>
+<div class="text-message">
+    <span class="name-message">
+        <%=item.name %>:
+    </span>
+    <span>
+        <%=item.text %>
+    </span>
+    <span class="date">
+        <%=item.dateStr %>
+    </span>
+</div>
+<%}); %>
+
