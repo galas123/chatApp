@@ -1,7 +1,10 @@
 'use strict'
-
+var moment = require('moment');
 var template = require('raw!../template.html');
-var lastMessageDate=new Date(0);
+var now = moment();
+moment.lang('ru');
+console.log(now.format('dddd, MMMM DD YYYY, h:mm:ss'));
+var lastMessageDate=moment([2000, 9, 31]);
 var result;
 
 
@@ -13,16 +16,10 @@ module.exports = {
     addMessage(applyTemplate(newMessages));
     window.scrollTop = 9999;
   }
-}
+};
 
 function decorateWithTime(message) {
-  var messageDate = message.date;
-  var curr_date   = messageDate.getDate();
-  var curr_month  = messageDate.getMonth() + 1;
-  var curr_year   = messageDate.getFullYear();
-  var curr_hour   = messageDate.getHours();
-  var curr_min    = messageDate.getMinutes();
-  message.dateStr = curr_year + "-" + curr_month + "-" + curr_date + ' ' + curr_hour + ':' + curr_min;
+  message.dateStr = moment().milliseconds(message.date).local().format( "DD MM HH:mm");
   return message;
 }
 function newMessagesFilter(item) {
@@ -36,7 +33,6 @@ function addMessage (result){
 
 }
 function applyTemplate(newMessages){
-  var window = document.querySelector('.chat-container');
   var tmpl   = _.template(template);
   return tmpl({list: newMessages});
 
