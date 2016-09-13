@@ -12,7 +12,7 @@ function postMessage(message) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/chat', true);
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-  var json = JSON.stringify(_.extend({}, message, {date: moment.utc(new Date()).millisecond()}));
+  var json = JSON.stringify(_.extend({}, message, {date: moment.utc(new Date()).format('x')}));
   xhr.send(json);
 }
 

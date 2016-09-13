@@ -1,8 +1,8 @@
 'usr strict'
 
-const {getChat}         = require('./chat');
-const {postMessage}     = require('./chat');
+const {getChat,postMessage}         = require('./chat');
 const {render}     = require('./render');
+const moment      = require('moment');
 
 const submit = document.querySelector('#button');
 const text   = document.querySelector('.text-input');
@@ -11,20 +11,16 @@ const name   = document.querySelector('.name-input');
 init();
 
 function init() {
+  
+  
   checkChat();
-//setInterval(checkChat,5000);
+  setInterval(checkChat,5000);
   submit.addEventListener('click', postMessageGetChat, false);
 }
 
 function checkChat() {
-  var stream = getChat();
-  stream
-    .then(function (response) {
-        render(response.map(function (message) {
-          return _.extend({}, message, {date: new Date(message.date)})
-        }));
-      }
-    )
+  getChat()
+    .then(render)
     .catch(function (error) {
       console.log('ошибка', error)
     })
