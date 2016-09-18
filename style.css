@@ -1,6 +1,30 @@
+.enactive-frame{
+  width:100%;
+  height:100%;
+  position:absolute;
+  background-color: rgba(0,0,0,0.5);
+  z-index:20;
+}
+
+.login-frame {
+  position: absolute;
+  margin-left: -15%;
+  margin-top: -10%;
+  top: 50%;
+  left: 50%;
+  height:30%;
+  min-height: 260px;
+  width: 20%;
+  background-color: white;
+  padding: 10px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
 .chat-window{
   height:500px;
-
   background-color: beige;
   padding:20px;
   position:relative;
@@ -20,17 +44,23 @@
 .name-message{
   display:block;
   vertical-align: middle;
-  color: #676ec4;
+}
+.name{
+  width:100%;
+}
+.color-drop-down{
+  width:100%;
+  font-size: 14px;
+  display:flex;
+  align-items: center;
+
 }
 .text-input{
  margin:20px;
   width:90%;
   display:inline-block;
+}
 
-}
-.name{
-  margin-left:20px;
-}
 .button{
   display:inline-block;
 }
@@ -39,4 +69,83 @@
   vertical-align: middle;
   right:1px;
   color: #48c46c;
+}
+.color-list{
+  margin:0;
+  padding:0;
+}
+.name-input {
+  width: 100%;
+  height: 35px;
+  font-size: 16px;
+  padding: 0 10px;
+}
+.color1{
+  background-color: #676ec4;
+}
+.color2{
+  background-color:#48c46c;
+}
+.color3 {
+background-color: crimson;
+}
+.color4 {
+  background-color:greenyellow;
+}
+.dropbtn, .submit {
+  background-color: #ccc;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width:100%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width:50%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content .color {
+  color: black;
+  width:100%;
+  height:30px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content .color:hover {
+opacity: 0.6;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn, .submit:hover {
+  background-color: #3e8e41;
+}
+.chosen-color-indicate{
+  width: 30px;
+  height: 30px;
+  background-color: #444;
+  margin-left: 30px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.2);
+}
+.caption-chat{
+  color:#666;
+}
+.hide{
+  display:none;
 }
