@@ -1,20 +1,38 @@
 'use strict';
 
+const moment = require('moment');
+
 module.exports = {
-  
-  loadJSON(url, options) {
-    return new Promise(function(resolve, reject) {
-      var xhr = new XMLHttpRequest();
+  getChat,
+  postMessage
+};
+
+function getChat() {
+  return ajaxService.loadJSON('/chat');
+}
+
+
+function postMessage(message) {
+  const body    = JSON.stringify(_.extend({}, message, {date: moment.utc(new Date()).format('x')}));
+  const options = {method: 'post', body};
+  ajaxService.loadJSON('/chat', options);
+}
+
+
+let ajaxService = {
+  loadJSON: function (url, options) {
+    return new Promise(function (resolve, reject) {
+      let xhr = new XMLHttpRequest();
 
       options = options || {};
 
-      let method = options.method || 'GET';
+      const method = options.method || 'GET';
 
       xhr.open(method, url, true);
 
-      xhr.onload = function() {
+      xhr.onload = function () {
         if (xhr.status !== 200) {
-          reject( xhr.status + ': ' + xhr.statusText );
+          reject(xhr.status + ': ' + xhr.statusText);
         } else {
           let response = JSON.parse(xhr.responseText);
 
@@ -22,11 +40,11 @@ module.exports = {
         }
       };
 
-      xhr.onerror = function() {
-        reject( xhr.status + ': ' + xhr.statusText );
+      xhr.onerror = function () {
+        reject(xhr.status + ': ' + xhr.statusText);
       };
 
-      xhr.send();
-    });
+      xhr.send(options.body);
+    })
   }
 };

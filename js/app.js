@@ -1,42 +1,40 @@
 'usr strict'
 
-const {getChat,postMessage}         = require('./chat');
+const moment = require('moment');
+const {getChat, postMessage}         = require('./ajaxService');
 const {render}     = require('./render');
-const moment      = require('moment');
 
-const submit = document.querySelector('#button');
-const text   = document.querySelector('.text-input');
-const name   = document.querySelector('.name-input');
-
-const colorList = document.querySelector('.dropdown-content');
-const submitLogin=document.querySelector('.submit');
-
-colorList.addEventListener('click', setColor, false);
-submitLogin.addEventListener('click', startChat, false);
-
+const textInput = document.querySelector('.text-input');
 let nickname;
 let color;
-
 
 init();
 
 function init() {
-  
-  
   checkChat();
-  setInterval(checkChat,5000);
+  setInterval(checkChat, 1000);
+
+  const colorList   = document.querySelector('.dropdown-content');
+  colorList.addEventListener('click', setColor, false);
+  
+  const submitLogin = document.querySelector('.submit');
+  submitLogin.addEventListener('click', startChat, false);
+
+  const submit = document.querySelector('#button');
   submit.addEventListener('click', postMessageGetChat, false);
 }
 
-function startChat(){
-  console.log('start');
-  let nameInput=document.querySelector('.name-input');
-  nickname= nameInput.value || 'anonym';
-
-  let loginForm=document.querySelector('.enactive-frame');
+function startChat() {
+  const nameInput = document.querySelector('.name-input');
+  nickname      = nameInput.value || 'anonym';
+  const loginForm = document.querySelector('.enactive-frame');
   loginForm.classList.add('hide');
-
-
+  postMessage({
+    name: nickname, 
+    text: '', 
+    colorNickname: color, 
+    type: 'enter'
+  });
 }
 
 function checkChat() {
@@ -44,23 +42,26 @@ function checkChat() {
     .then(render)
     .catch(function (error) {
       console.log('ошибка', error)
-    })
-
+    });
 }
 
 function clearTextInput() {
-  text.value = '';
+  textInput.value = '';
 }
 
 function postMessageGetChat() {
-  postMessage({name: nickname, text: text.value, colorNickname:color});
+  postMessage({
+    name: nickname,
+    text: textInput.value, 
+    colorNickname: color
+  });
   checkChat();
   clearTextInput();
 }
 
-function setColor(e){
-  color= getComputedStyle(e.target,'').backgroundColor;
-  let indicator=document.querySelector('.chosen-color-indicate');
-  indicator.style.backgroundColor=color;
+function setColor(e) {
+  color                           = getComputedStyle(e.target, '').backgroundColor;
+  const indicator                   = document.querySelector('.chosen-color-indicate');
+  indicator.style.backgroundColor = color;
 }
 

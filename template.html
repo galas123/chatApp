@@ -1,14 +1,24 @@
 <% list.forEach(function(item){ %>
+
 <div class="text-message">
+    <% if (item.type==='enter'){%>
+    <div class="welcome-frame">
+        К нам присоединился <%=item.name %>! Давайте его поприветствуем.
+    </div>
+    <% }
+    else {%>
     <span class="name-message" style="color: <%=item.colorNickname||'#666' %>">
         <%=item.name %>:
     </span>
     <span>
         <%=item.text %>
     </span>
+    <%}%>
     <span class="date">
         <%=item.dateStr %>
     </span>
+
 </div>
-<%}); %>
+<%});%>
+
 

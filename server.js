@@ -1,5 +1,4 @@
 var http = require('http');
-var getChat = require('./js/chat');
 var url = require('url');
 var querystring = require('querystring');
 var static = require('node-static');

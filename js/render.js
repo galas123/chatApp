@@ -8,20 +8,18 @@ moment.locale('ru');
 
 module.exports = {
   render(chat){
-
     var newMessages = chat.filter(newMessagesFilter).map(decorateWithTime);
 
     appendHtmlToPage(applyTemplate(newMessages));
 
-    var window       = document.querySelector('.chat-container');
-    window.scrollTop = 9999;
+    const chatWindow  = document.querySelector('.chat-container');
+    chatWindow.scrollTop = 9999;
 
     lastMessageDate = saveLastMessageDate(chat);
   }
 };
 
 function decorateWithTime(message) {
-
   message.dateStr = moment(message.date,'x').local().format( "HH:mm DD/MM");
   return message;
 }
@@ -36,7 +34,7 @@ function appendHtmlToPage(html) {
 }
 
 function applyTemplate(newMessages) {
-  var tmpl = _.template(template);
+  const tmpl = _.template(template);
   return tmpl({list: newMessages});
 }
 
