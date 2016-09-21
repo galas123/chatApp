@@ -11,9 +11,6 @@ let color;
 init();
 
 function init() {
-  checkChat();
-  setInterval(checkChat, 1000);
-
   const colorList   = document.querySelector('.dropdown-content');
   colorList.addEventListener('click', setColor, false);
   
@@ -35,6 +32,9 @@ function startChat() {
     colorNickname: color, 
     type: 'enter'
   });
+  checkChat();
+  setInterval(checkChat, 1000);
+
 }
 
 function checkChat() {
